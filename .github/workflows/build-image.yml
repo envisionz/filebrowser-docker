@@ -45,23 +45,14 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker (latest)
         if: ${{ matrix.conf.latest }}
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=raw,latest
-            type=raw,2
-            type=raw,${{ matrix.conf.version }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        if: ${{ !matrix.conf.latest }}
-        id: meta
+        id: meta_latest
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,${{ matrix.conf.version }}
+            ${{ matrix.conf.latest && 'type=raw,latest' || '' }}
+            ${{ matrix.conf.latest && 'type=raw,2' || '' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
