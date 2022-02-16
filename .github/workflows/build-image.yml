@@ -43,9 +43,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Extract metadata (tags, labels) for Docker (latest)
+      - name: Extract metadata (tags, labels) for Docker
         if: ${{ matrix.conf.latest }}
-        id: meta_latest
+        id: meta
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
