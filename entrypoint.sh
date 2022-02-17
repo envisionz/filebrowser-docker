@@ -20,6 +20,6 @@ adduser -D -G $fb_user -u $user_id $fb_user
 
 chown -R "${fb_user}:${fb_user}" /data
 
-su - $fb_user
+su -m -l $fb_user
 
 exec /opt/filebrowser/filebrowser "$@"
