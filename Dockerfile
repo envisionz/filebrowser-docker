@@ -19,9 +19,6 @@ RUN if [ "$TARGETOS" != "linux" ]; then exit 1; fi; \
     && tar -xzvf filebrowser.tar.gz -C /opt/filebrowser \
     && rm -f filebrowser.tar.gz
 
-HEALTHCHECK --start-period=2s --interval=5s --timeout=3s \
-  CMD curl -f http://localhost/health || exit 1
-
 EXPOSE 8080
 
 RUN mkdir -p /etc/filebrowser /data
