@@ -23,8 +23,10 @@ jobs:
     strategy:
       matrix:
         conf: 
-          - version: "2.21.1"
+          - version: "2.22.4"
             latest: true
+          - version: "2.21.1"
+            latest: false
           - version: "2.20.1"
             latest: false
 
